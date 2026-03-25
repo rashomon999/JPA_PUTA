@@ -1,0 +1,33 @@
+package edu.co.icesi.introspringboot.entity;
+
+import jakarta.persistence.*;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@Entity(name = "event")
+public class Event {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer eventId;
+
+    @Column(name = "event_date")
+    private LocalDate eventDate;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "origin_region_id")
+    private Region originRegion;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "target_region_id")
+    private Region targetRegion;
+
+    private String location;
+}

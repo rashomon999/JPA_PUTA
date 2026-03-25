@@ -1,0 +1,55 @@
+package edu.co.icesi.introspringboot.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+@Embeddable
+public class MemberGroupKey implements Serializable {
+
+    @Column(name = "member_ref_id")
+    private Integer memberRefId;
+
+    @Column(name = "group_ref_id")
+    private Integer groupRefId;
+
+    public MemberGroupKey() {
+    }
+
+    public MemberGroupKey(Integer memberRefId, Integer groupRefId) {
+        this.memberRefId = memberRefId;
+        this.groupRefId = groupRefId;
+    }
+
+    public Integer getMemberRefId() {
+        return memberRefId;
+    }
+
+    public void setMemberRefId(Integer memberRefId) {
+        this.memberRefId = memberRefId;
+    }
+
+    public Integer getGroupRefId() {
+        return groupRefId;
+    }
+
+    public void setGroupRefId(Integer groupRefId) {
+        this.groupRefId = groupRefId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MemberGroupKey that = (MemberGroupKey) o;
+        return Objects.equals(memberRefId, that.memberRefId) &&
+               Objects.equals(groupRefId, that.groupRefId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(memberRefId, groupRefId);
+    }
+}
